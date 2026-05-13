@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DRAPIER PHILIPPE</title>
+  <meta name="description" content="A local Android workspace for reservations, maintenance requests, attendance tracking, and staff training.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="favicon.png">
+  <style>
+    :root {
+      --ink: #1c2433;
+      --navy: #2e3950;
+      --slate: #63636c;
+      --gold: #dd9a3d;
+      --teal: #326a72;
+      --surface: #f6f7fa;
+      --line: #dde2eb;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--surface);
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      min-height: 100vh;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(246, 247, 250, .92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      color: var(--slate);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .hero {
+      width: min(1120px, calc(100% - 32px));
+      margin: 28px auto 0;
+      min-height: calc(100vh - 138px);
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 28px;
+      align-items: center;
+      padding-bottom: 48px;
+    }
+
+    .hero-copy {
+      padding: 18px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid rgba(50, 106, 114, .22);
+      border-radius: 8px;
+      color: var(--teal);
+      background: #edf6f5;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      max-width: 720px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 650px;
+      color: var(--slate);
+      font-size: 18px;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 8px;
+      font-weight: 900;
+      border: 1px solid var(--navy);
+    }
+
+    .button.primary {
+      color: var(--white);
+      background: var(--navy);
+    }
+
+    .button.secondary {
+      color: var(--navy);
+      background: var(--white);
+    }
+
+    .visual {
+      position: relative;
+      min-height: 560px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--navy);
+      box-shadow: 0 24px 60px rgba(28, 36, 51, .18);
+    }
+
+    .visual img {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+      object-fit: cover;
+      opacity: .72;
+      display: block;
+    }
+
+    .phone {
+      position: absolute;
+      right: 28px;
+      bottom: 28px;
+      width: min(310px, 72%);
+      background: #f9fafc;
+      border: 8px solid #101723;
+      border-radius: 28px;
+      padding: 16px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .35);
+    }
+
+    .phone-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .phone-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .metric {
+      background: #edf0f5;
+      border-radius: 8px;
+      padding: 10px;
+      font-weight: 900;
+    }
+
+    .metric small {
+      display: block;
+      color: var(--slate);
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    section {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0;
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      color: var(--slate);
+      line-height: 1.55;
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .tile {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      min-height: 190px;
+    }
+
+    .tile strong {
+      display: block;
+      margin: 14px 0 8px;
+      font-size: 18px;
+    }
+
+    .tile p {
+      color: var(--slate);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(221, 154, 61, .18);
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .privacy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .band {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 28px;
+    }
+
+    .band p {
+      color: rgba(255, 255, 255, .78);
+      line-height: 1.55;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px 0 36px;
+      color: var(--slate);
+    }
+
+    footer div {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero,
+      .privacy {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .visual,
+      .visual img {
+        min-height: 480px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="#top">
+          <img src="favicon.png" alt="">
+          <span>DRAPIER PHILIPPE</span>
+        </a>
+        <div class="nav-links">
+          <a href="#workflow">Workflow</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Local Android operations workspace</span>
+          <h1>DRAPIER PHILIPPE</h1>
+          <p class="lead">A focused mobile app for reservation management, maintenance requests, attendance tracking, and staff training routines. It keeps daily business work organized directly on the device.</p>
+          <div class="actions">
+            <a class="button primary" href="#workflow">View workflow</a>
+            <a class="button secondary" href="#privacy">Privacy details</a>
+          </div>
+        </div>
+
+        <div class="visual" aria-label="App preview">
+          <img src="featured.png" alt="DRAPIER PHILIPPE operations graphic">
+          <div class="phone">
+            <div class="phone-top">
+              <span>Operations</span>
+              <span>DP</span>
+            </div>
+            <div class="metric-row">
+              <div class="metric">2<small>arrivals</small></div>
+              <div class="metric">3<small>requests</small></div>
+              <div class="metric">2/4<small>present</small></div>
+              <div class="metric">65%<small>training</small></div>
+            </div>
+            <div class="phone-card"><strong>Maison Verlaine</strong><br>Boardroom A, today at 08:45</div>
+            <div class="phone-card"><strong>Main entrance</strong><br>Door closer adjustment due today</div>
+          </div>
+        </div>
+      </div>
+
+      <section id="workflow">
+        <div class="section-head">
+          <h2>Built for daily operating rhythm</h2>
+          <p>The app separates the core work into fast mobile screens so the team can review status, create records, and keep follow-up actions visible.</p>
+        </div>
+        <div class="grid">
+          <article class="tile">
+            <div class="icon">01</div>
+            <strong>Reservations</strong>
+            <p>Manage arrivals, room assignments, setup notes, status, and handoff details from a single list.</p>
+          </article>
+          <article class="tile">
+            <div class="icon">02</div>
+            <strong>Maintenance</strong>
+            <p>Capture requests by area, priority, due date, and resolution state for faster daily follow-up.</p>
+          </article>
+          <article class="tile">
+            <div class="icon">03</div>
+            <strong>Attendance</strong>
+            <p>Review shift presence and expected staff while planning reservations and support tasks.</p>
+          </article>
+          <article class="tile">
+            <div class="icon">04</div>
+            <strong>Training</strong>
+            <p>Track internal course progress for front desk, facilities, and operations routines.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="privacy" class="privacy">
+        <div class="band">
+          <h2>Local-first by design</h2>
+          <p>Records are stored on the Android device. The app does not require account registration, cloud sync, analytics, advertising identifiers, location, contacts, photos, microphone input, payments, or health data.</p>
+        </div>
+        <div class="tile">
+          <div class="icon">DP</div>
+          <strong>Simple deployment</strong>
+          <p>DRAPIER PHILIPPE can use the app as an internal operations notebook without connecting to external APIs or requesting Android permissions.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div>
+        <span>DRAPIER PHILIPPE</span>
+        <span>Support: support@drapierphilippe.com</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
