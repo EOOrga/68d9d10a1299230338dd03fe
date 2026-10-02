@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "applications": {
+    "com.taziggg100.drapierphilippe": {
+      "title": "DRAPIER PHILIPPE",
+      "short_description": "Manage reservations, requests, attendance, and staff training locally.",
+      "full_description": "DRAPIER PHILIPPE gives operations teams a focused Android workspace for the daily work that keeps service moving: reservations, maintenance requests, attendance checks, and staff training progress.\n\nCreate reservation records with setup notes, log maintenance issues by area and priority, review staff presence, and advance internal training courses from clear mobile screens. Records and preferences stay on the device, so the app works without accounts, cloud sync, external APIs, or Android permissions.",
+      "source_screenshots": [
+        "docs/screens/1.png",
+        "docs/screens/2.png",
+        "docs/screens/3.png"
+      ],
+      "generated_from": "existing repository listing metadata and README",
+      "generated_at": "2026-10-02T21:26:47.201691+00:00"
+    }
+  }
+}
