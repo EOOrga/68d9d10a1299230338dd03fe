@@ -1,0 +1,3 @@
+DRAPIER PHILIPPE gives operations teams a focused Android workspace for the daily work that keeps service moving: reservations, maintenance requests, attendance checks, and staff training progress.
+
+Create reservation records with setup notes, log maintenance issues by area and priority, review staff presence, and advance internal training courses from clear mobile screens. Records and preferences stay on the device, so the app works without accounts, cloud sync, external APIs, or Android permissions.
