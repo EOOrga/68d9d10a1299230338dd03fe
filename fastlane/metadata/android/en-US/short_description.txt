@@ -1,0 +1,1 @@
+Manage reservations, requests, attendance, and staff training locally.
